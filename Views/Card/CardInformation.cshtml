@@ -1,10 +1,13 @@
-﻿@*@model Idcardmvc.Models.IdDetail*@
+﻿@model Idcardmvc.Models.IdDetail
 
 
 <link src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 <link src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" />
 <link src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
 <link src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=smoothscroll,NodeList.prototype.forEach,Promise,Object.values,Object.assign,String.prototype.startsWith" defer></script>
+
+<script src="/js/app.js?id=a6f13e5330bcbd27a9753baf4bfc934c" defer></script>
 <style>
 
     * {
@@ -257,111 +260,160 @@
     }
 </style>
 
+
+
 <!-- MultiStep Form -->
 <div class="container-fluid" id="grad1">
     <div class="row justify-content-center mt-0">
         <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
             <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                <h2><strong>Sign Up Your User Account</strong></h2>
+                <h2><strong>Card Generator</strong></h2>
                 <p>Fill all form field to go to next step</p>
                 <div class="row">
                     <div class="col-md-12 mx-0">
                         <form id="msform">
                             <!-- progressbar -->
                             <ul id="progressbar">
-                                <li class="active" id="account"><strong>Account</strong></li>
-                                <li id="personal"><strong>Personal</strong></li>
-                                <li id="payment"><strong>Payment</strong></li>
-                                <li id="confirm"><strong>Finish</strong></li>
+                                <li class="active" id="account"><strong>Card information</strong></li>
+                                <li id="personal">
+                                    <strong>
+                                        Choose design
+                                    </strong>
+                                </li>
+                                <li id="payment">
+                                    <strong>
+                                        Review card info
+                                    </strong>
+                                </li>
+                                <li id="confirm"><strong>Print preview</strong></li>
                             </ul>
                             <!-- fieldsets -->
-                            <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title">Account Information</h2>
-                                    <input type="email" name="email" placeholder="Email Id" />
-                                    <input type="text" name="uname" placeholder="UserName" />
-                                    <input type="password" name="pwd" placeholder="Password" />
-                                    <input type="password" name="cpwd" placeholder="Confirm Password" />
-                                </div>
-                                <input type="button" name="next" class="next action-button" value="Next Step" />
-                            </fieldset>
-                            <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title">Personal Information</h2>
-                                    <input type="text" name="fname" placeholder="First Name" />
-                                    <input type="text" name="lname" placeholder="Last Name" />
-                                    <input type="text" name="phno" placeholder="Contact No." />
-                                    <input type="text" name="phno_2" placeholder="Alternate Contact No." />
-                                </div>
-                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                <input type="button" name="next" class="next action-button" value="Next Step" />
-                            </fieldset>
-                            <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title">Payment Information</h2>
-                                    <div class="radio-group">
-                                        <div class='radio' data-value="credit"><img src="https://i.imgur.com/XzOzVHZ.jpg" width="200px" height="100px"></div>
-                                        <div class='radio' data-value="paypal"><img src="https://i.imgur.com/jXjwZlj.jpg" width="200px" height="100px"></div>
-                                        <br>
+                            
+                                <fieldset>
+                                    <div class="form-card" action="CardInformation">
+                                        <p class="" style="text-align:center">Type Your Card Information as Following</p>
+
+                                    <input id="Name" type="text" name="name" placeholder="Type Your Name" required >
+
+                                    <input id="profession" type="text" name="profession" placeholder="Type Your Profession" required >
+                                   
+                                    <input id="Email" type="email" name="email" placeholder="Type Your Email" required >
+
+                                    <input id="Number" type="text" name="phnum" placeholder="Type Your Mobile Number" required >
+
+                                    <input id="Website" type="text" name="website" placeholder="Type Your Website" required >
+
+                                    <input id="companyName" type="text" name="companyname" placeholder="Type Your Company name" required >
+
+                                    <input id="Location" type="text" name="location" placeholder="Type Your location" required >
+                                    
+
                                     </div>
-                                    <label class="pay">Card Holder Name*</label>
-                                    <input type="text" name="holdername" placeholder="" />
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <label class="pay">Card Number*</label>
-                                            <input type="text" name="cardno" placeholder="" />
+
+                                    <input id="nxtstp" type="button" name="next" class="next action-button" value="Next Step" />
+
+                                </fieldset>
+
+                                @*------------------------------------------------------------------------------------------------*@
+
+
+
+                                <fieldset>
+                                    <div class="form-card">
+
+                                        <h2 class="fs-title">Personal Information</h2>
+                                        <input type="text" name="fname" placeholder="First Name" />
+                                        <input type="text" name="lname" placeholder="Last Name" />
+                                        <input type="text" name="phno" placeholder="Contact No." />
+                                        <input type="text" name="phno_2" placeholder="Alternate Contact No." />
+
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+
+
+
+                                 @*------------------------------------------------------------------------------------------------*@
+
+
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title">Payment Information</h2>
+                                        <div class="radio-group">
+                                            <div class='radio' data-value="credit"><img src="https://i.imgur.com/XzOzVHZ.jpg" width="200px" height="100px"></div>
+                                            <div class='radio' data-value="paypal"><img src="https://i.imgur.com/jXjwZlj.jpg" width="200px" height="100px"></div>
+                                            <br>
                                         </div>
-                                        <div class="col-3">
-                                            <label class="pay">CVC*</label>
-                                            <input type="password" name="cvcpwd" placeholder="***" />
+                                        <label class="pay">Card Holder Name*</label>
+                                        <input type="text" name="holdername" placeholder="" />
+                                        <div class="row">
+                                            <div class="col-9">
+                                                <label class="pay">Card Number*</label>
+                                                <input type="text" name="cardno" placeholder="" />
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="pay">CVC*</label>
+                                                <input type="password" name="cvcpwd" placeholder="***" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="pay">Expiry Date*</label>
+                                            </div>
+                                            <div class="col-9">
+                                                <select class="list-dt" id="month" name="expmonth">
+                                                    <option selected>Month</option>
+                                                    <option>January</option>
+                                                    <option>February</option>
+                                                    <option>March</option>
+                                                    <option>April</option>
+                                                    <option>May</option>
+                                                    <option>June</option>
+                                                    <option>July</option>
+                                                    <option>August</option>
+                                                    <option>September</option>
+                                                    <option>October</option>
+                                                    <option>November</option>
+                                                    <option>December</option>
+                                                </select>
+                                                <select class="list-dt" id="year" name="expyear">
+                                                    <option selected>Year</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <label class="pay">Expiry Date*</label>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                    <input type="button" name="make_payment" class="next action-button" value="Confirm" />
+                                </fieldset>
+
+
+
+
+                            @*------------------------------------------------------------------------------------------------*@
+
+
+
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title text-center">Success !</h2>
+                                        <br><br>
+                                        <div class="row justify-content-center">
+                                            <div class="col-3">
+                                                <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image">
+                                            </div>
                                         </div>
-                                        <div class="col-9">
-                                            <select class="list-dt" id="month" name="expmonth">
-                                                <option selected>Month</option>
-                                                <option>January</option>
-                                                <option>February</option>
-                                                <option>March</option>
-                                                <option>April</option>
-                                                <option>May</option>
-                                                <option>June</option>
-                                                <option>July</option>
-                                                <option>August</option>
-                                                <option>September</option>
-                                                <option>October</option>
-                                                <option>November</option>
-                                                <option>December</option>
-                                            </select>
-                                            <select class="list-dt" id="year" name="expyear">
-                                                <option selected>Year</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                <input type="button" name="make_payment" class="next action-button" value="Confirm" />
-                            </fieldset>
-                            <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title text-center">Success !</h2>
-                                    <br><br>
-                                    <div class="row justify-content-center">
-                                        <div class="col-3">
-                                            <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image">
+                                        <br><br>
+                                        <div class="row justify-content-center">
+                                            <div class="col-7 text-center">
+                                                <h5>You Have Successfully Signed Up</h5>
+                                            </div>
                                         </div>
                                     </div>
-                                    <br><br>
-                                    <div class="row justify-content-center">
-                                        <div class="col-7 text-center">
-                                            <h5>You Have Successfully Signed Up</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
+                                </fieldset>
+
+                            @*------------------------------------------------------------------------------------------------*@
+
                         </form>
                     </div>
                 </div>
@@ -369,6 +421,7 @@
         </div>
     </div>
 </div>
+
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -442,4 +495,74 @@
         })
 
     });
-</script>                       
+</script>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function() {
+
+
+        var Name = "";
+
+        $("#errorname").hide();
+
+        $(document).on("focusin", "#Name", function () {
+                $("#name").hide();
+            });
+
+        $("#Name").focusout(function () {
+
+            Name = $(this).val();
+
+            if (Name === '') { $("#errorname").show(); }
+
+            else { $("#errorname").hide(); }
+
+            });
+
+
+
+        $("#nxtstp").click(function () {
+
+            cookiecheck();
+        });
+       
+
+        function cookiecheck() {
+
+            $.ajax({
+                type: "POST",
+                url: "/Card/CardInformation",
+                data: {
+                    Name: $("#Name").val(),
+                    Profession: $("#profession").val(),
+                    Email: $("#Email").val(),
+                    ContactNumber: $("#Number").val(),
+                    Website: $("#Website").val(),
+                    CompanyName: $("#companyName").val(),
+                    Location: $("#Location").val()
+                },
+
+                success: function (response) {
+                    if (response == 'True') {
+
+                    } else {
+                    }
+                },
+
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+    });
+
+    
+
+
+</script>                      
