@@ -13,6 +13,7 @@ namespace Idcardmvc.Controllers
             context = _context;
         }
     
+
         public IActionResult Index()
         {
             return View();
