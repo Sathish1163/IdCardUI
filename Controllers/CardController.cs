@@ -23,25 +23,30 @@ namespace Idcardmvc.Controllers
 
             return View();
         }
-        //[HttpPost]
-        //public IActionResult CardInformation(IdDetail detail)
-        //{
-        //    IdDetail idDetail= new IdDetail();
+        [HttpPost]
+        public IActionResult CardInformation(IdDetail detail)
+        {
+            IdDetail idDetail = new IdDetail();
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        idDetail.Name = detail.Name;
-        //        idDetail.Profession = detail.Profession;
-        //        idDetail.CompanyName = detail.CompanyName;
-        //        idDetail.ContactNumber = detail.ContactNumber;
-        //        idDetail.Location = detail.Location;
-        //        idDetail.Email= detail.Email;
-        //        idDetail.Website= detail.Website;
-                
-        //        return View();
-        //    }
-        //    context.IdDetails.Add(idDetail);
-        //    return View();
-        //}
+            if (ModelState.IsValid)
+            {
+                idDetail.Name = detail.Name;
+                idDetail.Profession = detail.Profession;
+                idDetail.CompanyName = detail.CompanyName;
+                idDetail.ContactNumber = detail.ContactNumber;
+                idDetail.Location = detail.Location;
+                idDetail.Email = detail.Email;
+                idDetail.Website = detail.Website;
+                ViewBag.Name = detail.Name;
+
+                context.IdDetails.Add(idDetail);
+                context.SaveChanges();
+                return View();
+
+            }
+
+            return View(detail);
+            
+        }
     }
 }
